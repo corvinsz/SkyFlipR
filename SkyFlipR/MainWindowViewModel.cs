@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 
 using MaterialDesignThemes.Wpf;
 
+using SkyFlipR.Features.ReleaseNotes;
 using SkyFlipR.Models;
 using SkyFlipR.Services;
 
@@ -34,5 +35,16 @@ public partial class MainWindowViewModel : ObservableObject
             .Select(g => new AuctionGrouping(g.Key, g.ToList(), skipCount))
             .OrderBy(x => x.ProfitMargin)
             .ToList();
+    }
+
+    private readonly Lazy<Features.ReleaseNotes.ReleaseNotesDialog> _releaseNotesDialog = new(() => new Features.ReleaseNotes.ReleaseNotesDialog());
+    [RelayCommand]
+    private async Task OpenReleaseNotes()
+    {
+        if (DialogHost.IsDialogOpen(null))
+        {
+            DialogHost.Close(null);
+        }
+        await DialogHost.Show(_releaseNotesDialog.Value);
     }
 }

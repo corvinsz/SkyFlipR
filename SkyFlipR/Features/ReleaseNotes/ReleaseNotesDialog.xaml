@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="SkyFlipR.Features.ReleaseNotes.ReleaseNotesDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mdWpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
+             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             Padding="16"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+  <UserControl.Resources>
+    <!-- Override h1 -->
+    <Style TargetType="Paragraph" x:Key="Heading1Paragraph" BasedOn="{StaticResource {x:Type Paragraph}}">
+      <Setter Property="Foreground" Value="Fuchsia"/>
+      <!-- Optional: adjust font size or weight -->
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- Override other heading levels if needed -->
+    <Style TargetType="Paragraph" x:Key="Heading2Paragraph" BasedOn="{StaticResource {x:Type Paragraph}}">
+      <Setter Property="Foreground" Value="Green"/>
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+  </UserControl.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+
+    <!--<wv2:WebView2CompositionControl x:Name="webView"
+                                        Grid.Row="0"
+                                        MinWidth="1200"
+                                        MinHeight="700" />-->
+    <mdWpf:MarkdownViewer x:Name="markdownViewer" Grid.Row="0" />
+
+    <Button Grid.Row="1"
+            HorizontalAlignment="Right"
+            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+            Content="Close"
+            Style="{StaticResource MaterialDesignFlatButton}" />
+  </Grid>
+</UserControl>

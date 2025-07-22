@@ -63,6 +63,26 @@
         </TabItem>
       </TabControl>
 
+      <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+        <Button Width="72"
+                Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
+                Command="{Binding OpenReleaseNotesCommand}"
+                Content="{materialDesign:PackIcon Kind=Notes,
+                                                  Size=NaN}"
+                Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Release Notes" />
+        <Button Width="72"
+                Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
+                Command="{Binding OpenSettingsCommand}"
+                Content="{materialDesign:PackIcon Kind=Cog,
+                                                  Size=NaN}"
+                Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="Settings" />
+      </StackPanel>
+
+
       <materialDesign:Snackbar ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}" MessageQueue="{Binding MessageQueue}" />
 
     </Grid>

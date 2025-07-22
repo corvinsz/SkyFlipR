@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ApplicationDefinition Remove="App.xaml" />
+    <None Remove="Features\ReleaseNotes\ReleaseNotes.md" />
     <Content Include="Resources\AppIcon.ico" />
     <Page Include="App.xaml" />
   </ItemGroup>
@@ -39,9 +40,18 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Humanizer" />
+    <PackageReference Include="Markdig.Wpf" />
     <PackageReference Include="MaterialDesignThemes" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="System.Linq.Async" />
+    <PackageReference Include="Markdig" />
+    <PackageReference Include="Microsoft.Web.WebView2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Features\ReleaseNotes\ReleaseNotes.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
