@@ -53,12 +53,18 @@ public partial class App : Application
                 return new SnackbarMessageQueue(TimeSpan.FromSeconds(3.0), dispatcher);
             });
 
+            var httpClient = new System.Net.Http.HttpClient();
+
             services.AddSingleton<Services.IDialogService, Services.DialogService>();
             services.AddSingleton<Services.ErrorHandling.IErrorHandler, Services.ErrorHandling.ErrorHandler>();
             services.AddSingleton<Services.IFileHandler, Services.FileHandler>();
             services.AddSingleton<Services.ISkyblockAuctionService, Services.SkyblockAuctionService>(_ =>
             {
-                return new Services.SkyblockAuctionService(new System.Net.Http.HttpClient());
+                return new Services.SkyblockAuctionService(httpClient);
+            });
+            services.AddSingleton<Services.ISkyblockBazaarService, Services.SkyblockBazaarService>(_ =>
+            {
+                return new Services.SkyblockBazaarService(httpClient);
             });
 
 
@@ -68,6 +74,10 @@ public partial class App : Application
             // Features
             services.AddSingleton<Features.AuctionHouseFlip.AuctionHouseFlipView>();
             services.AddSingleton<Features.AuctionHouseFlip.AuctionHouseFlipViewModel>();
+
+            services.AddSingleton<Features.BazaarFlip.BazaarFlipView>();
+            services.AddSingleton<Features.BazaarFlip.BazaarFlipViewModel>();
+
             services.AddSingleton<Features.ToDoList.ToDoListView>();
             services.AddSingleton<Features.ToDoList.ToDoListViewModel>();
 

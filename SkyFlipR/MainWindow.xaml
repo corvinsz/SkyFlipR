@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:featAHFlip="clr-namespace:SkyFlipR.Features.AuctionHouseFlip"
+        xmlns:featBZFlip="clr-namespace:SkyFlipR.Features.BazaarFlip"
         xmlns:featToDo="clr-namespace:SkyFlipR.Features.ToDoList"
         xmlns:local="clr-namespace:SkyFlipR"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -47,6 +48,18 @@
             </StackPanel>
           </TabItem.Header>
           <featAHFlip:AuctionHouseFlipView />
+        </TabItem>
+        <TabItem>
+          <TabItem.Header>
+            <StackPanel Width="auto" Height="auto">
+              <materialDesign:PackIcon Width="24"
+                                       Height="24"
+                                       HorizontalAlignment="Center"
+                                       Kind="TablePicnic" />
+              <TextBlock HorizontalAlignment="Center" Text="Bazaar Flip" />
+            </StackPanel>
+          </TabItem.Header>
+          <featBZFlip:BazaarFlipView />
         </TabItem>
       </TabControl>
 

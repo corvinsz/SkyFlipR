@@ -18,6 +18,10 @@ internal class NumberToMetricConverter : IValueConverter
         {
             return parsedInt.ToMetric();
         }
+        if (double.TryParse(value?.ToString(), out double parsedDouble))
+        {
+            return parsedDouble.ToMetric();
+        }
         return value;
     }
 
