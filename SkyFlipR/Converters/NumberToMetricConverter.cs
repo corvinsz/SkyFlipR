@@ -16,11 +16,11 @@ internal class NumberToMetricConverter : IValueConverter
     {
         if (int.TryParse(value?.ToString(), out int parsedInt))
         {
-            return parsedInt.ToMetric();
+            return parsedInt.ToMetric(decimals: 0);
         }
         if (double.TryParse(value?.ToString(), out double parsedDouble))
         {
-            return parsedDouble.ToMetric();
+            return parsedDouble.ToMetric(decimals: 0);
         }
         return value;
     }

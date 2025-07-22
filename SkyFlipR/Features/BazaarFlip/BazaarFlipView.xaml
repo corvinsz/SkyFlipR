@@ -53,17 +53,17 @@
       </ListBox.ItemsPanel>
       <ListBox.ItemTemplate>
         <DataTemplate>
-          <GroupBox Header="{Binding Name}">
+          <GroupBox Header="{Binding Name}" Style="{StaticResource MaterialDesignCardGroupBox}">
             <StackPanel>
               <!-- Product Identifier -->
               <TextBlock Text="{Binding QuickStatus.ProductId, StringFormat=Product ID: {0}}" />
 
               <!-- Prices -->
-              <TextBlock Text="{Binding QuickStatus.SellPrice, StringFormat=Buy Order: {0:N0}, Converter={StaticResource NumberToMetricConverter}}" />
-              <TextBlock Text="{Binding QuickStatus.BuyPrice, StringFormat=Insta Buy: {0:N0}, Converter={StaticResource NumberToMetricConverter}}" />
+              <TextBlock Text="{Binding QuickStatus.SellPrice, StringFormat=Buy Order: {0}, Converter={StaticResource NumberToMetricConverter}}" />
+              <TextBlock Text="{Binding QuickStatus.BuyPrice, StringFormat=Insta Buy: {0}, Converter={StaticResource NumberToMetricConverter}}" />
 
               <!-- Example computed binding (e.g., buy price ×16) -->
-              <TextBlock Text="{Binding BuyPriceForLevelFive, StringFormat=Buy Price [lvl 5]: {0:N0}, Converter={StaticResource NumberToMetricConverter}}"  Margin="0 16 0 0"/>
+              <TextBlock Text="{Binding BuyPriceForLevelFive, StringFormat=Buy Price for [lvl 5]: {0}, Converter={StaticResource NumberToMetricConverter}}"  Margin="0 16 0 0"/>
             </StackPanel>
 
           </GroupBox>
