@@ -2,22 +2,58 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:featAHFlip="clr-namespace:SkyFlipR.Features.AuctionHouseFlip"
+        xmlns:featToDo="clr-namespace:SkyFlipR.Features.ToDoList"
         xmlns:local="clr-namespace:SkyFlipR"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=False}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="SkyFlipR"
+        Width="800"
+        Height="450"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel,
+                                         IsDesignTimeCreatable=False}"
         Style="{StaticResource MaterialDesignWindow}"
-        Title="Demo App" Height="450" Width="800">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
-    <Button Grid.Row="0"
-            Command="{Binding TaskLoadItemsCommand}"
-            Content="Get BINs" />
-    <DataGrid Grid.Row="1"
-              IsReadOnly="True"
-              ItemsSource="{Binding GroupedItems}" />
-  </Grid>
+        mc:Ignorable="d">
+  <materialDesign:DialogHost ApplyBlurBackground="True"
+                             BlurRadius="8"
+                             CornerRadius="16"
+                             DialogContentUniformCornerRadius="16"
+                             SnackbarMessageQueue="{Binding MessageQueue}"
+                             Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
+    <Grid>
+      <TabControl Padding="8"
+                  materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                  Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+        <TabItem>
+          <TabItem.Header>
+            <StackPanel Width="auto" Height="auto">
+              <materialDesign:PackIcon Width="24"
+                                       Height="24"
+                                       HorizontalAlignment="Center"
+                                       Kind="ToDo" />
+              <TextBlock HorizontalAlignment="Center" Text="ToDo" />
+            </StackPanel>
+          </TabItem.Header>
+          <featToDo:ToDoListView />
+        </TabItem>
+        <TabItem>
+          <TabItem.Header>
+            <StackPanel Width="auto" Height="auto">
+              <materialDesign:PackIcon Width="24"
+                                       Height="24"
+                                       HorizontalAlignment="Center"
+                                       Kind="CurrencyUsd" />
+              <TextBlock HorizontalAlignment="Center" Text="AH Flip" />
+            </StackPanel>
+          </TabItem.Header>
+          <featAHFlip:AuctionHouseFlipView />
+        </TabItem>
+      </TabControl>
+
+      <materialDesign:Snackbar ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}" MessageQueue="{Binding MessageQueue}" />
+
+    </Grid>
+  </materialDesign:DialogHost>
+
+
 </Window>

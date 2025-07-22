@@ -3,6 +3,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using MaterialDesignThemes.Wpf;
+
 using SkyFlipR.Models;
 using SkyFlipR.Services;
 
@@ -29,7 +31,8 @@ public partial class MainWindowViewModel : ObservableObject
 
         GroupedItems = allBINs
             .GroupBy(a => a.ItemName)
-            .Select(g => new AuctionGrouping(g.Key, g.ToList(), skipCount, 20))
+            .Select(g => new AuctionGrouping(g.Key, g.ToList(), skipCount))
+            .OrderBy(x => x.ProfitMargin)
             .ToList();
     }
 }

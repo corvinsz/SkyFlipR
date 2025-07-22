@@ -11,12 +11,5 @@ public partial class MainWindow
     {
         DataContext = viewModel;
         InitializeComponent();
-
-        CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, OnClose));
-    }
-
-    private void OnClose(object sender, ExecutedRoutedEventArgs e)
-    {
-        Close();
     }
 }
