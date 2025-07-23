@@ -43,7 +43,7 @@ public partial class VelopackUpdaterViewModel : ObservableObject
     private string _currentAppVersion;
 
     [RelayCommand]
-    public async Task CheckForUpdatesUpdate(bool showMessages = true)
+    private async Task CheckForUpdate(bool showMessages)
     {
         if (!_um.IsInstalled)
         {
@@ -85,7 +85,7 @@ public partial class VelopackUpdaterViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task ApplyUpdateAndRestart(bool showMessages = true)
+    private async Task ApplyUpdateAndRestart(bool showMessages)
     {
         if (_update is null)
         {
@@ -105,6 +105,16 @@ public partial class VelopackUpdaterViewModel : ObservableObject
             }
             // TODO: Log error
             // App.Log.LogError(ex, "Error downloading updates");
+        }
+    }
+
+    [RelayCommand]
+    private async Task CheckAndApplyUpdate()
+    {
+        await CheckForUpdate(false).ConfigureAwait(true);
+        if (IsUpdateAvailable)
+        {
+            await ApplyUpdateAndRestart(false).ConfigureAwait(true);
         }
     }
 }

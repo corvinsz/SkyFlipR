@@ -20,12 +20,15 @@ public partial class MainWindowViewModel : ObservableObject
     private readonly IDialogService _dialogService;
 
     public ISnackbarMessageQueue SnackbarMessageQueue { get; }
+    public VelopackUpdaterViewModel VelopackUpdater { get; }
 
     public MainWindowViewModel(IDialogService dialogService,
-                               ISnackbarMessageQueue snackbarMessageQueue)
+                               ISnackbarMessageQueue snackbarMessageQueue,
+                               VelopackUpdaterViewModel velopackUpdaterViewModel)
     {
         _dialogService = dialogService;
         SnackbarMessageQueue = snackbarMessageQueue;
+        VelopackUpdater = velopackUpdaterViewModel;
     }
 
     [RelayCommand]

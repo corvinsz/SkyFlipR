@@ -1,6 +1,7 @@
 ﻿<Window x:Class="SkyFlipR.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:featAHFlip="clr-namespace:SkyFlipR.Features.AuctionHouseFlip"
         xmlns:featBZFlip="clr-namespace:SkyFlipR.Features.BazaarFlip"
@@ -15,6 +16,12 @@
                                          IsDesignTimeCreatable=False}"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d">
+  <behaviors:Interaction.Triggers>
+    <behaviors:EventTrigger EventName="Loaded">
+      <behaviors:InvokeCommandAction Command="{Binding VelopackUpdater.CheckAndApplyUpdateCommand}" />
+    </behaviors:EventTrigger>
+  </behaviors:Interaction.Triggers>
+
   <Grid>
     <materialDesign:DialogHost ApplyBlurBackground="True"
                                BlurRadius="8"
