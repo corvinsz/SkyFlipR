@@ -9,6 +9,12 @@ namespace SkyFlipR.Features.ToDoList;
 
 public partial class ToDoItemGroup : ObservableObject
 {
+    public ToDoItemGroup(string jsonString)
+    {
+        // TODO
+        //JsonSerializer.PopulateObject(this, jsonString);
+    }
+
     public string Name { get; }
     public List<ToDoItem> Items { get; } = [];
 
@@ -19,11 +25,5 @@ public partial class ToDoItemGroup : ObservableObject
         {
             item.IsCompleted = false;
         }
-    }
-
-    internal static ToDoItemGroup ReadFromJsonFile(string file)
-    {
-        string json = File.ReadAllText(file);
-        return JsonSerializer.Deserialize<ToDoItemGroup>(json) ?? throw new Exception("");
     }
 }

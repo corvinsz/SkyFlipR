@@ -9,12 +9,15 @@ namespace SkyFlipR.Services;
 
 public interface IFileHandler
 {
+    string BaseFolder { get; }
     string ReadFile(string path);
     void WriteFile(string path, string content);
 }
 
 public class FileHandler : IFileHandler
 {
+    public string BaseFolder { get; } = Path.Combine(Path.GetTempPath(), nameof(SkyFlipR));
+
     public void WriteFile(string path, string content)
     {
         File.WriteAllText(path, content);

@@ -15,78 +15,78 @@
                                          IsDesignTimeCreatable=False}"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d">
-  <materialDesign:DialogHost ApplyBlurBackground="True"
-                             BlurRadius="8"
-                             CornerRadius="16"
-                             DialogContentUniformCornerRadius="16"
-                             SnackbarMessageQueue="{Binding MessageQueue}"
-                             Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
-    <Grid>
-      <TabControl Padding="8"
-                  materialDesign:ColorZoneAssist.Mode="PrimaryMid"
-                  Style="{StaticResource MaterialDesignNavigationRailTabControl}">
-        <TabItem>
-          <TabItem.Header>
-            <StackPanel Width="auto" Height="auto">
-              <materialDesign:PackIcon Width="24"
-                                       Height="24"
-                                       HorizontalAlignment="Center"
-                                       Kind="ToDo" />
-              <TextBlock HorizontalAlignment="Center" Text="ToDo" />
-            </StackPanel>
-          </TabItem.Header>
-          <featToDo:ToDoListView />
-        </TabItem>
-        <TabItem>
-          <TabItem.Header>
-            <StackPanel Width="auto" Height="auto">
-              <materialDesign:PackIcon Width="24"
-                                       Height="24"
-                                       HorizontalAlignment="Center"
-                                       Kind="CurrencyUsd" />
-              <TextBlock HorizontalAlignment="Center" Text="AH Flip" />
-            </StackPanel>
-          </TabItem.Header>
-          <featAHFlip:AuctionHouseFlipView />
-        </TabItem>
-        <TabItem>
-          <TabItem.Header>
-            <StackPanel Width="auto" Height="auto">
-              <materialDesign:PackIcon Width="24"
-                                       Height="24"
-                                       HorizontalAlignment="Center"
-                                       Kind="TablePicnic" />
-              <TextBlock HorizontalAlignment="Center" Text="Bazaar Flip" />
-            </StackPanel>
-          </TabItem.Header>
-          <featBZFlip:BazaarFlipView />
-        </TabItem>
-      </TabControl>
+  <Grid>
+    <materialDesign:DialogHost ApplyBlurBackground="True"
+                               BlurRadius="8"
+                               CornerRadius="16"
+                               DialogContentUniformCornerRadius="16"
+                               Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
+      <Grid>
+        <TabControl Padding="8"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+          <TabItem>
+            <TabItem.Header>
+              <StackPanel Width="auto" Height="auto">
+                <materialDesign:PackIcon Width="24"
+                                         Height="24"
+                                         HorizontalAlignment="Center"
+                                         Kind="ToDo" />
+                <TextBlock HorizontalAlignment="Center" Text="ToDo" />
+              </StackPanel>
+            </TabItem.Header>
+            <featToDo:ToDoListView />
+          </TabItem>
+          <TabItem>
+            <TabItem.Header>
+              <StackPanel Width="auto" Height="auto">
+                <materialDesign:PackIcon Width="24"
+                                         Height="24"
+                                         HorizontalAlignment="Center"
+                                         Kind="CurrencyUsd" />
+                <TextBlock HorizontalAlignment="Center" Text="AH Flip" />
+              </StackPanel>
+            </TabItem.Header>
+            <featAHFlip:AuctionHouseFlipView />
+          </TabItem>
+          <TabItem>
+            <TabItem.Header>
+              <StackPanel Width="auto" Height="auto">
+                <materialDesign:PackIcon Width="24"
+                                         Height="24"
+                                         HorizontalAlignment="Center"
+                                         Kind="TablePicnic" />
+                <TextBlock HorizontalAlignment="Center" Text="Bazaar Flip" />
+              </StackPanel>
+            </TabItem.Header>
+            <featBZFlip:BazaarFlipView />
+          </TabItem>
+        </TabControl>
 
-      <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
-        <Button Width="72"
-                Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
-                Command="{Binding OpenReleaseNotesCommand}"
-                Content="{materialDesign:PackIcon Kind=Notes,
-                                                  Size=NaN}"
-                Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="Release Notes" />
-        <Button Width="72"
-                Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
-                Command="{Binding OpenSettingsCommand}"
-                Content="{materialDesign:PackIcon Kind=Cog,
-                                                  Size=NaN}"
-                Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="Settings" />
-      </StackPanel>
-
-
-      <materialDesign:Snackbar ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}" MessageQueue="{Binding MessageQueue}" />
-
-    </Grid>
-  </materialDesign:DialogHost>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+          <Button Width="72"
+                  Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
+                  Command="{Binding OpenReleaseNotesCommand}"
+                  Content="{materialDesign:PackIcon Kind=Notes,
+                                                    Size=NaN}"
+                  Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                  Style="{StaticResource MaterialDesignFlatButton}"
+                  ToolTip="Release Notes" />
+          <Button Width="72"
+                  Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=Self}}"
+                  Command="{Binding OpenSettingsCommand}"
+                  Content="{materialDesign:PackIcon Kind=Cog,
+                                                    Size=NaN}"
+                  Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                  Style="{StaticResource MaterialDesignFlatButton}"
+                  ToolTip="Settings" />
+        </StackPanel>
 
 
+
+      </Grid>
+    </materialDesign:DialogHost>
+
+    <materialDesign:Snackbar ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}" MessageQueue="{Binding SnackbarMessageQueue}" />
+  </Grid>
 </Window>

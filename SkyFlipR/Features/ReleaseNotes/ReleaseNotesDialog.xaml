@@ -12,18 +12,22 @@
              mc:Ignorable="d">
   <UserControl.Resources>
     <!-- Override h1 -->
-    <Style TargetType="Paragraph" x:Key="Heading1Paragraph" BasedOn="{StaticResource {x:Type Paragraph}}">
-      <Setter Property="Foreground" Value="Fuchsia"/>
+    <Style x:Key="Heading1Paragraph"
+           TargetType="Paragraph"
+           BasedOn="{StaticResource {x:Type Paragraph}}">
       <!-- Optional: adjust font size or weight -->
-      <Setter Property="FontSize" Value="24"/>
-      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="24" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Foreground" Value="Fuchsia" />
     </Style>
 
     <!-- Override other heading levels if needed -->
-    <Style TargetType="Paragraph" x:Key="Heading2Paragraph" BasedOn="{StaticResource {x:Type Paragraph}}">
-      <Setter Property="Foreground" Value="Green"/>
-      <Setter Property="FontSize" Value="20"/>
-      <Setter Property="FontWeight" Value="SemiBold"/>
+    <Style x:Key="Heading2Paragraph"
+           TargetType="Paragraph"
+           BasedOn="{StaticResource {x:Type Paragraph}}">
+      <Setter Property="FontSize" Value="20" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="Green" />
     </Style>
   </UserControl.Resources>
   <Grid>
@@ -32,11 +36,11 @@
       <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <!--<wv2:WebView2CompositionControl x:Name="webView"
-                                        Grid.Row="0"
-                                        MinWidth="1200"
-                                        MinHeight="700" />-->
-    <mdWpf:MarkdownViewer x:Name="markdownViewer" Grid.Row="0" />
+    <wv2:WebView2CompositionControl x:Name="webView"
+                                    Grid.Row="0"
+                                    MinWidth="1200"
+                                    MinHeight="700" />
+    <!--<mdWpf:MarkdownViewer x:Name="markdownViewer" Grid.Row="0" />-->
 
     <Button Grid.Row="1"
             HorizontalAlignment="Right"

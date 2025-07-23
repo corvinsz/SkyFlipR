@@ -5,7 +5,10 @@ using CommunityToolkit.Mvvm.Input;
 
 using MaterialDesignThemes.Wpf;
 
+using Microsoft.Extensions.DependencyInjection;
+
 using SkyFlipR.Features.ReleaseNotes;
+using SkyFlipR.Features.Settings;
 using SkyFlipR.Models;
 using SkyFlipR.Services;
 
@@ -13,38 +16,36 @@ namespace SkyFlipR;
 
 public partial class MainWindowViewModel : ObservableObject
 {
-    private static readonly HttpClient _httpClient = new HttpClient();
-    private readonly SkyblockAuctionService _auctionService;
-
-    public MainWindowViewModel()
-    {
-        _auctionService = new SkyblockAuctionService(_httpClient);
-    }
-
-    [ObservableProperty]
-    private List<AuctionGrouping> _groupedItems;
-
-    [RelayCommand]
-    private async Task TaskLoadItems()
-    {
-        int skipCount = 2; // Skip two lowest to get “normal” price (i.e. use 3rd price)
-        var allBINs = await _auctionService.GetBuyItNowAuctionsAsync().ToListAsync();
-
-        GroupedItems = allBINs
-            .GroupBy(a => a.ItemName)
-            .Select(g => new AuctionGrouping(g.Key, g.ToList(), skipCount))
-            .OrderBy(x => x.ProfitMargin)
-            .ToList();
-    }
-
     private readonly Lazy<Features.ReleaseNotes.ReleaseNotesDialog> _releaseNotesDialog = new(() => new Features.ReleaseNotes.ReleaseNotesDialog());
+    private readonly IDialogService _dialogService;
+
+    public ISnackbarMessageQueue SnackbarMessageQueue { get; }
+
+    public MainWindowViewModel(IDialogService dialogService,
+                               ISnackbarMessageQueue snackbarMessageQueue)
+    {
+        _dialogService = dialogService;
+        SnackbarMessageQueue = snackbarMessageQueue;
+    }
+
     [RelayCommand]
     private async Task OpenReleaseNotes()
     {
-        if (DialogHost.IsDialogOpen(null))
+        if (_dialogService.IsDialogOpen(null))
         {
-            DialogHost.Close(null);
+            _dialogService.Close(null);
         }
-        await DialogHost.Show(_releaseNotesDialog.Value);
+        await _dialogService.Show(_releaseNotesDialog.Value);
+    }
+
+    [RelayCommand]
+    private async Task OpenSettings()
+    {
+        if (_dialogService.IsDialogOpen(null))
+        {
+            _dialogService.Close(null);
+        }
+        var view = App.AppServices.GetRequiredService<SettingsView>();
+        await _dialogService.Show(view);
     }
 }

@@ -17,6 +17,7 @@
       </ResourceDictionary.MergedDictionaries>
 
       <!--Converters-->
+      <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
       <converters:IsPositiveToColorConverter x:Key="IsPositiveToColorConverter"/>
       <converters:NumberToMetricConverter x:Key="NumberToMetricConverter"/>
 

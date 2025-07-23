@@ -64,11 +64,11 @@ public partial class AuctionHouseFlipViewModel : ObservableObject
             .OrderBy(x => x.Name)
             .ToList();
 
-			_groupedItems = allBINs
-				.GroupBy(a => new { a.CleansedItemName, a.Tier })
-				.Select(g => new AuctionGrouping($"{g.Key.CleansedItemName} [{g.Key.Tier}]", g.ToList()))
-				.OrderByDescending(x => x.ProfitMargin)
-				.ToList();
+            _groupedItems = allBINs
+                .GroupBy(a => new { a.CleansedItemName, a.Tier })
+                .Select(g => new AuctionGrouping($"{g.Key.CleansedItemName} [{g.Key.Tier}]", g.ToList()))
+                .OrderByDescending(x => x.ProfitMargin)
+                .ToList();
 
             ApplyFilter();
         }

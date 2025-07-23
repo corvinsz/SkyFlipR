@@ -37,21 +37,22 @@
     <Page Include="App.xaml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" />
-    <PackageReference Include="Humanizer" />
-    <PackageReference Include="Markdig.Wpf" />
-    <PackageReference Include="MaterialDesignThemes" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="System.Linq.Async" />
-    <PackageReference Include="Markdig" />
-    <PackageReference Include="Microsoft.Web.WebView2" />
-  </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" />
+      <PackageReference Include="Humanizer" />
+      <PackageReference Include="Markdig.Wpf" />
+      <PackageReference Include="MaterialDesignThemes" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" />
+      <PackageReference Include="System.Linq.Async" />
+      <PackageReference Include="Markdig" />
+      <PackageReference Include="Microsoft.Web.WebView2" />
+      <PackageReference Include="Velopack" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Features\ReleaseNotes\ReleaseNotes.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-</Project>
+    <ItemGroup>
+      <EmbeddedResource Include="Features\ReleaseNotes\ReleaseNotes.md">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+  </Project>

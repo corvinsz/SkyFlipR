@@ -36,6 +36,7 @@
     <PackageVersion Include="Markdig" Version="0.41.3" />
     <PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.3351.48" />
     <PackageVersion Include="System.Text.Json" Version="9.0.3" />
+    <PackageVersion Include="Velopack" Version="0.0.1350-g3ba32af" />
     <PackageVersion Include="xunit" Version="2.9.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
