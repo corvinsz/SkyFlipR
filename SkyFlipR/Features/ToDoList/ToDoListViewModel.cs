@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -24,17 +25,19 @@ public partial class ToDoListViewModel : ObservableObject
     private readonly IErrorHandler _errorHandler;
     private readonly ISnackbarMessageQueue _snackbarMessageQueue;
     private readonly IFileHandler _fileHandler;
+    private readonly IDialogService _dialogService;
 
     public Dictionary<string, List<ToDoItemGroup>> Items { get; } = [];
 
     public ToDoListViewModel(IErrorHandler errorHandler,
                              ISnackbarMessageQueue snackbarMessageQueue,
-                             IFileHandler fileHandler)
+                             IFileHandler fileHandler,
+                             IDialogService dialogService)
     {
         _errorHandler = errorHandler;
         _snackbarMessageQueue = snackbarMessageQueue;
         _fileHandler = fileHandler;
-
+        _dialogService = dialogService;
         try
         {
             LoadFiles();
@@ -46,8 +49,14 @@ public partial class ToDoListViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void UncheckAll()
+    private async Task UncheckAll()
     {
+        var result = (MessageBoxResult?)await _dialogService.Show(new Shared.MessageBoxDialog("Uncheck all", "Are you sure you want to uncheck all?", System.Windows.MessageBoxButton.YesNo));
+        if (result != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
         foreach (var group in Items)
         {
             foreach(var item in group.Value)
