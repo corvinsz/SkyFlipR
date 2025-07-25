@@ -44,6 +44,7 @@
       <PackageReference Include="MaterialDesignThemes" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
       <PackageReference Include="Microsoft.Extensions.Hosting" />
+      <PackageReference Include="Newtonsoft.Json" />
       <PackageReference Include="System.Linq.Async" />
       <PackageReference Include="Markdig" />
       <PackageReference Include="Microsoft.Web.WebView2" />
@@ -52,6 +53,12 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Features\ReleaseNotes\ReleaseNotes.md">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Features\ToDoList\Data\Daily.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Features\ToDoList\Data\Weekly.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>

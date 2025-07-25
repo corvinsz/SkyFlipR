@@ -11,6 +11,8 @@ using CommunityToolkit.Mvvm.Input;
 
 using MaterialDesignThemes.Wpf;
 
+using Newtonsoft.Json;
+
 using SkyFlipR.Services;
 using SkyFlipR.Services.ErrorHandling;
 
@@ -18,12 +20,12 @@ namespace SkyFlipR.Features.ToDoList;
 
 public partial class ToDoListViewModel : ObservableObject
 {
-    private readonly string[] _files = ["daily.json", "weekly.json"];
+    private static readonly string[] _files = ["Daily.json", "Weekly.json"];
     private readonly IErrorHandler _errorHandler;
     private readonly ISnackbarMessageQueue _snackbarMessageQueue;
     private readonly IFileHandler _fileHandler;
 
-    public ObservableCollection<ToDoItemGroup> Items { get; } = [];
+    public Dictionary<string, List<ToDoItemGroup>> Items { get; } = [];
 
     public ToDoListViewModel(IErrorHandler errorHandler,
                              ISnackbarMessageQueue snackbarMessageQueue,
@@ -32,6 +34,7 @@ public partial class ToDoListViewModel : ObservableObject
         _errorHandler = errorHandler;
         _snackbarMessageQueue = snackbarMessageQueue;
         _fileHandler = fileHandler;
+
         try
         {
             LoadFiles();
@@ -45,9 +48,12 @@ public partial class ToDoListViewModel : ObservableObject
     [RelayCommand]
     private void UncheckAll()
     {
-        foreach (var item in Items)
+        foreach (var group in Items)
         {
-            item.UncheckAll();
+            foreach(var item in group.Value)
+            {
+                item.UncheckAll();
+            }
         }
     }
 
@@ -57,8 +63,24 @@ public partial class ToDoListViewModel : ObservableObject
         foreach (string file in _files)
         {
             string filePath = Path.Combine(_fileHandler.BaseFolder, file);
+            EnsureFileIsPresent(filePath);
+
             string json = _fileHandler.ReadFile(filePath);
-            Items.Add(new ToDoItemGroup(json));
+
+            var groups = JsonConvert.DeserializeObject<List<ToDoItemGroup>>(json)!;
+            string friendlyName = Path.GetFileNameWithoutExtension(file);
+            Items.Add(friendlyName, groups);
+        }
+    }
+
+    private void EnsureFileIsPresent(string file)
+    {
+        if (!_fileHandler.Exists(file))
+        {
+            string fileName = Path.GetFileName(file);
+            string localPath = Path.Combine(@"Features\ToDoList\Data", fileName);
+
+            _fileHandler.Copy(localPath, file);
         }
     }
 }

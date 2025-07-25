@@ -1,0 +1,15 @@
+﻿[
+  {
+    "Name": "Misc",
+    "Items": [
+      {
+        "Name": "Collect minions",
+        "IsCompleted": false
+      },
+      {
+        "Name": "Aranya",
+        "IsCompleted": false
+      }
+    ]
+  }
+]

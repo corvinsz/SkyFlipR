@@ -9,10 +9,10 @@ namespace SkyFlipR.Features.ToDoList;
 
 public partial class ToDoItemGroup : ObservableObject
 {
-    public ToDoItemGroup(string jsonString)
+    public ToDoItemGroup(string name, List<ToDoItem> items)
     {
-        // TODO
-        //JsonSerializer.PopulateObject(this, jsonString);
+        Name = name;
+        Items = items;
     }
 
     public string Name { get; }

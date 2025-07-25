@@ -1,0 +1,49 @@
+﻿[
+  {
+    "Name": "Misc",
+    "Items": [
+      {
+        "Name": "Enchanting",
+        "IsCompleted": false
+      },
+      {
+        "Name": "5x Dungeon runs (+40% cata exp)",
+        "IsCompleted": false
+      }
+    ]
+  },
+  {
+    "Name": "Garden",
+    "Items": [
+      {
+        "Name": "Visitors",
+        "IsCompleted": false
+      },
+      {
+        "Name": "Vacuum pests",
+        "IsCompleted": false
+      }
+    ]
+  },
+  {
+    "Name": "Mining Island",
+    "Items": [
+      {
+        "Name": "Forge (Titanium)",
+        "IsCompleted": false
+      },
+      {
+        "Name": "4x HOTM commissions (+bonus exp)",
+        "IsCompleted": false
+      },
+      {
+        "Name": "Fetchur NPC",
+        "IsCompleted": false
+      },
+      {
+        "Name": "Puzzler NPC",
+        "IsCompleted": false
+      }
+    ]
+  }
+]
